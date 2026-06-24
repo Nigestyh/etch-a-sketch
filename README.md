@@ -1,9 +1,9 @@
-# 📺Etch-a-Sketch
+# 📺 Etch-a-Sketch
 
 An interactive Etch-a-Sketch application built with HTML, CSS, and JavaScript.
 Users can create custom-sized drawing grids, paint using different colours (including rainbow colours), erase and reset the canvas.
 
-## ✨Features
+## ✨ Features
 
 - A custom drawing grid (up to 64 × 64)
 - Click-and-drag drawing functionality
@@ -13,7 +13,7 @@ Users can create custom-sized drawing grids, paint using different colours (incl
 - Reset button to clear the entire canvas
 - Interactive hover effect
 
-## 🕹️How to Use
+## 🕹️ How to Use
 
 1. Open the application in your browser
 2. Click New Canvas and create a grid of your desired size
@@ -23,11 +23,11 @@ Users can create custom-sized drawing grids, paint using different colours (incl
 6. Use Erase to remove parts of your drawing
 7. Use Reset to clear the entire canvas
 
-## 🚀Live Demo
+## 🚀 Live Demo
 
 [View Live Demo](https://nigestyh.github.io/etch-a-sketch/)
 
-## 💡Future Improvements
+## 💡 Future Improvements
 
 - Custom color picker
 - Touch support for mobile devices
