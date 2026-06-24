@@ -29,9 +29,7 @@ function erase(e) {
   e.target.style.backgroundColor = "";
 }
 
-containerElement.addEventListener("mousedown", (e) => {
-  e.preventDefault();
-  isDrawing = true;
+function applyTool(e) {
   if (currentTool === "paint") {
     paint(e);
   } else if (currentTool === "rainbow") {
@@ -39,19 +37,19 @@ containerElement.addEventListener("mousedown", (e) => {
   } else if (currentTool === "erase") {
     erase(e);
   }
+}
+
+containerElement.addEventListener("mousedown", (e) => {
+  e.preventDefault();
+  isDrawing = true;
+  applyTool(e);
 });
 containerElement.addEventListener("mouseup", (e) => {
   isDrawing = false;
 });
 containerElement.addEventListener("mouseover", (e) => {
   if (!isDrawing) return;
-  if (currentTool === "paint") {
-    paint(e);
-  } else if (currentTool === "rainbow") {
-    e.target.style.backgroundColor = generateRandomColor();
-  } else if (currentTool === "erase") {
-    erase(e);
-  }
+  applyTool(e);
 });
 
 function newCanvas() {
