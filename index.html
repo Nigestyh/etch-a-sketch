@@ -10,25 +10,33 @@
 </head>
 
 <body>
-    <h2>Etch-a-Sketch</h2>
-    <div id="grid-container" class="grid-container"></div>
-    <button id="canvas-btn">
-        New Canvas</button>
-    <select>
-        <option>Select a Colour</option>
-        <option>Red</option>
-        <option>Yellow</option>
-        <option>Blue</option>
-        <option>Green</option>
-        <option>Pink</option>
-        <option>Brown</option>
-        <option>Orange</option>
-        <option>Black</option>
-        <option>White</option>
-        <option>Rainbow</option>
-    </select>
-    <button>Erase</button>
-    <button>Reset</button>
+    <section class="main-container">
+        <div class="title">
+            <h2>Etch-a-Sketch</h2>
+        </div>
+        <div id="grid-container" class="grid-container"></div>
+        <div class="option-container">
+            <button id="canvas-btn" class="canvas-btn">
+                New Canvas</button>
+            <div class="colors-container">
+                <select class="color-options">
+                    <option>Select a Colour</option>
+                    <option>Red</option>
+                    <option>Yellow</option>
+                    <option>Blue</option>
+                    <option>Green</option>
+                    <option>Pink</option>
+                    <option>Brown</option>
+                    <option>Orange</option>
+                    <option>Black</option>
+                    <option>White</option>
+                    <option>Rainbow</option>
+                </select>
+            </div>
+            <button class="erase-btn"><span class="btn">Erase </span></button>
+            <button class="reset-btn"><span class="btn">Reset</span></button>
+        </div>
+    </section>
 </body>
 
 </html>
