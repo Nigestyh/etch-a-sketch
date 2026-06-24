@@ -12,3 +12,19 @@ function createGrid() {
   }
 }
 createGrid();
+
+let isDrawing = false;
+containerElement.addEventListener("mousedown", (e) => {
+  isDrawing = true;
+
+  e.target.style.backgroundColor = "red";
+});
+containerElement.addEventListener("mouseup", (e) => {
+  isDrawing = false;
+});
+containerElement.addEventListener("mouseover", (e) => {
+  if (!isDrawing) return;
+  if (e.target.classList.contains("grid")) {
+    e.target.style.backgroundColor = "red";
+  }
+});
