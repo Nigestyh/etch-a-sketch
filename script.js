@@ -1,11 +1,13 @@
 const containerElement = document.getElementById("grid-container");
 const canvasBtn = document.getElementById("canvas-btn");
+const eraseBtn = document.getElementById("erase-btn");
+const resetBtn = document.getElementById("reset-btn");
 
 function createGrid(n) {
   for (let row = 0; row < n; row++) {
     for (let column = 0; column < n; column++) {
       const square = document.createElement("div");
-      square.classList.add("grid");
+      square.classList.add("square");
       square.style.width = `${500 / n}px`;
       square.style.height = `${500 / n}px`;
       containerElement.appendChild(square);
@@ -14,18 +16,38 @@ function createGrid(n) {
 }
 
 let isDrawing = false;
+let currentTool = "paint";
+
+function paint(e) {
+  if (!e.target.classList.contains("square")) return;
+  e.target.style.backgroundColor = "red";
+}
+function erase(e) {
+  if (!e.target.classList.contains("square")) return;
+  e.target.style.backgroundColor = "";
+}
+
 containerElement.addEventListener("mousedown", (e) => {
   isDrawing = true;
-
-  e.target.style.backgroundColor = "red";
+  if (currentTool === "paint") {
+    paint(e);
+  } else {
+    if (currentTool === "erase") {
+      erase(e);
+    }
+  }
 });
 containerElement.addEventListener("mouseup", (e) => {
   isDrawing = false;
 });
 containerElement.addEventListener("mouseover", (e) => {
   if (!isDrawing) return;
-  if (e.target.classList.contains("grid")) {
-    e.target.style.backgroundColor = "red";
+  if (currentTool === "paint") {
+    paint(e);
+  } else {
+    if (currentTool === "erase") {
+      erase(e);
+    }
   }
 });
 
@@ -50,4 +72,15 @@ function newCanvas() {
 }
 
 canvasBtn.addEventListener("click", newCanvas);
+
 createGrid(16);
+
+eraseBtn.addEventListener("click", () => {
+  currentTool = "erase";
+});
+resetBtn.addEventListener("click", () => {
+  const squares = document.querySelectorAll(".square");
+  squares.forEach((square) => {
+    square.style.backgroundColor = "";
+  });
+});

@@ -15,7 +15,7 @@ body {
   overflow: hidden;
   position: relative;
 }
-.grid {
+.square {
   background-color: #f6f3f3f5;
   border: 0.4px solid rgba(225, 222, 222, 0.5);
 }
