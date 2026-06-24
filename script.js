@@ -2,6 +2,7 @@ const containerElement = document.getElementById("grid-container");
 const canvasBtn = document.getElementById("canvas-btn");
 const eraseBtn = document.getElementById("erase-btn");
 const resetBtn = document.getElementById("reset-btn");
+const colorOptions = document.getElementById("color-options");
 
 function createGrid(n) {
   for (let row = 0; row < n; row++) {
@@ -17,10 +18,11 @@ function createGrid(n) {
 
 let isDrawing = false;
 let currentTool = "paint";
+let selectedColor;
 
 function paint(e) {
   if (!e.target.classList.contains("square")) return;
-  e.target.style.backgroundColor = "red";
+  e.target.style.backgroundColor = selectedColor;
 }
 function erase(e) {
   if (!e.target.classList.contains("square")) return;
@@ -28,13 +30,14 @@ function erase(e) {
 }
 
 containerElement.addEventListener("mousedown", (e) => {
+  e.preventDefault();
   isDrawing = true;
   if (currentTool === "paint") {
     paint(e);
-  } else {
-    if (currentTool === "erase") {
-      erase(e);
-    }
+  } else if (currentTool === "rainbow") {
+    e.target.style.backgroundColor = generateRandomColor();
+  } else if (currentTool === "erase") {
+    erase(e);
   }
 });
 containerElement.addEventListener("mouseup", (e) => {
@@ -44,10 +47,10 @@ containerElement.addEventListener("mouseover", (e) => {
   if (!isDrawing) return;
   if (currentTool === "paint") {
     paint(e);
-  } else {
-    if (currentTool === "erase") {
-      erase(e);
-    }
+  } else if (currentTool === "rainbow") {
+    e.target.style.backgroundColor = generateRandomColor();
+  } else if (currentTool === "erase") {
+    erase(e);
   }
 });
 
@@ -84,3 +87,20 @@ resetBtn.addEventListener("click", () => {
     square.style.backgroundColor = "";
   });
 });
+
+colorOptions.addEventListener("change", (e) => {
+  let value = e.target.value;
+  if (value === "rainbow") {
+    currentTool = "rainbow";
+  } else {
+    currentTool = "paint";
+    selectedColor = value;
+  }
+});
+
+function generateRandomColor() {
+  const red = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  return `rgb(${red}, ${blue}, ${green})`;
+}
