@@ -39,17 +39,24 @@ function applyTool(e) {
   }
 }
 
-containerElement.addEventListener("mousedown", (e) => {
+containerElement.addEventListener("pointerdown", (e) => {
   e.preventDefault();
+
+  if (e.pointerId) {
+    e.target.releasePointerCapture(e.pointerId);
+  }
   isDrawing = true;
   applyTool(e);
 });
-containerElement.addEventListener("mouseup", (e) => {
+window.addEventListener("pointerup", (e) => {
   isDrawing = false;
 });
-containerElement.addEventListener("mouseover", (e) => {
+containerElement.addEventListener("pointermove", (e) => {
   if (!isDrawing) return;
   applyTool(e);
+});
+window.addEventListener("pointercancel", (e) => {
+  isDrawing = false;
 });
 
 function newCanvas() {
